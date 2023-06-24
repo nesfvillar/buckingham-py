@@ -31,7 +31,7 @@ class BuckinghamTransformer:
 
     def _get_null_space(self):
         ns = null_space(self.dimensional_matrix)
-        return ns / np.abs(ns).min()
+        return ns
 
     def _get_groups(self):
         groups = np.zeros_like(self.null_space[0], dtype=Variable)

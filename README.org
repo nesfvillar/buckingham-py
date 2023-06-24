@@ -22,7 +22,7 @@ it can be used to get a readable string of the resulting groups, for example for
 
 ** BuckinghamTransformer class
 
-In order to create the transformer, you need to provide a list of dimensional variables.
+In order to create the transformer, you need to provide a list of variables.
 
 #+begin_src python
   variables = [Variable('d', {'L': 1}),
