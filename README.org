@@ -1,0 +1,22 @@
+#+TITLE: Buckingham-py
+#+AUTHOR: Nestor Fabian Villar
+
+Buckingham Pi Theorem algorithm for dimensional analysis of systems.
+
+* Caution
+There is no guarantee that the program will produce the same adimensional groups every time it runs.
+If you plan on using the output, for example for preprocessing values for a neural network, consider saving the transformer, maybe with =pickle=.
+
+#+begin_src python
+  import pickle
+
+  with open('transformer-file', 'wb') as f:
+      pickle.dump(transformer, f)
+#+end_src
+
+Then instead of creating another transformer, which could have different adimensional parameters, just load the saved instance and it will have the original parameters used for the model.
+
+#+begin_src python
+  with open('transformer-file', 'rb') as f:
+      transformer = pickle.load(f)
+#+end_src
