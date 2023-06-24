@@ -44,6 +44,14 @@ The transformer class then provides many methods and properties, most importantl
   Every row of the returned array is the adimensional data for the corresponding dimensional data points.
 
 #+begin_src python
+  for group in transformer.groups:
+      print(group)
+
+  # pi_0 = d^1.0000000000000013 * t^-5.4494897427831885 * v^3.449489742783183 * a^-4.449489742783186
+  # pi_1 = d^4.449489742783185 * t^-3.449489742783185 * v^-5.4494897427831885 * a^1.0
+#+end_src
+
+#+begin_src python
   dimensional_data = [1, 2, 3, 4]
   adimensional_data = transformer.transform(dimensional_point)
 #+end_src
