@@ -25,12 +25,9 @@ it can be used to get a readable string of the resulting groups, for example for
 In order to create the transformer, you need to provide a list of dimensional variables.
 
 #+begin_src python
-  variables = [
-      Variable('d', {'L': 1}),
-      Variable('t', {'T': 1}),
-      Variable('v', {'L': 1, 'T': -1}),
-      Variable('a', {'L': 1, 'T': -2})
-  ]
+  variables = [Variable('d', {'L': 1}),
+               Variable('t', {'T': 1}),
+               Variable('v', {'L': 1, 'T': -1})]
 
   transformer = BuckinghamTransformer(variables)
 #+end_src
@@ -47,22 +44,21 @@ The transformer class then provides many methods and properties, most importantl
   for group in transformer.groups:
       print(group)
 
-  # pi_0 = d^1.0000000000000013 * t^-5.4494897427831885 * v^3.449489742783183 * a^-4.449489742783186
-  # pi_1 = d^4.449489742783185 * t^-3.449489742783185 * v^-5.4494897427831885 * a^1.0
+  # pi_0 = d^-1.0 * t^1.0 * v^1.0
 #+end_src
 
 #+begin_src python
-  dimensional_data = [1, 2, 3, 4]
+  dimensional_data = [1, 2, 3]
   adimensional_data = transformer.transform(dimensional_data)
 #+end_src
 
 #+begin_src python
-  dimensional_data = [[1, 2, 3, 4],
-                      [5, 6, 7, 8],
-                      [9, 10, 11, 12]]
+  dimensional_data = [[1, 2, 3],
+                      [4, 5, 6],
+                      [7, 8, 9],
+                      [10, 11, 12]]
   adimensional_data = transformer.axis_transform(dimensional_data)
 #+end_src
-
 
 * Caution
 There is no guarantee that the program will produce the same adimensional groups every time it runs.
