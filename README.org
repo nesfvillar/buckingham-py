@@ -3,6 +3,58 @@
 
 Buckingham Pi Theorem algorithm for dimensional analysis of systems.
 
+* Example
+
+** Variable class
+
+The first argument to is the name of the variable (a string).
+The second argument is a dictionary mapping the fundamental dimension (length, time, mass, money, quantity, ...), to the rational exponent of such dimension.
+
+For example, for acceleration, where =L= is length and =T= is time:
+
+#+begin_src python
+  acceleration = Variable('a', {'L': 1, 'T': -2})
+#+end_src
+
+The variable class provides a string readable string representation.
+As it is then used in the transformer class for the calculated adimensional groups,
+it can be used to get a readable string of the resulting groups, for example for labeling the axes of a graph.
+
+** BuckinghamTransformer class
+
+In order to create the transformer, you need to provide a list of dimensional variables.
+
+#+begin_src python
+  variables = [
+      Variable('d', {'L': 1}),
+      Variable('t', {'T': 1}),
+      Variable('v', {'L': 1, 'T': -1}),
+      Variable('a', {'L':1, 'T': -2})
+  ]
+
+  transformer = BuckinghamTransformer(variables)
+#+end_src
+
+The transformer class then provides many methods and properties, most importantly:
+- =groups= -> returns a list of the adimensional variables that make up the system.
+  The 'dimensions' dictionary is not of fundamental dimensions, but of the names of the variables that were given in the constructor.
+- =transform= -> transforms dimensional inputs in their numeric form, and in the same order as the variables given in the constructor,
+  into a list of numbers in the adimensional form.
+- =axis_transform= -> does the transform method in a list of inputs along the given axis.
+  Every row of the returned array is the adimensional data for the corresponding dimensional data points.
+
+#+begin_src python
+  dimensional_data = [1, 2, 3, 4]
+  adimensional_data = transformer.transform(dimensional_point)
+#+end_src
+
+#+begin_src python
+  dimensional_data = [[1, 2, 3, 4],
+                      [5, 6, 7, 8],
+                      [9, 10, 11, 12]]
+  adimensional_data = transfromer.axis_transform(dimensional_data)
+    #+end_src
+
 * Caution
 There is no guarantee that the program will produce the same adimensional groups every time it runs.
 If you plan on using the output, for example for preprocessing values for a neural network, consider saving the transformer, maybe with =pickle=.
