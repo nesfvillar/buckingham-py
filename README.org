@@ -29,7 +29,7 @@ In order to create the transformer, you need to provide a list of dimensional va
       Variable('d', {'L': 1}),
       Variable('t', {'T': 1}),
       Variable('v', {'L': 1, 'T': -1}),
-      Variable('a', {'L':1, 'T': -2})
+      Variable('a', {'L': 1, 'T': -2})
   ]
 
   transformer = BuckinghamTransformer(variables)
@@ -53,15 +53,16 @@ The transformer class then provides many methods and properties, most importantl
 
 #+begin_src python
   dimensional_data = [1, 2, 3, 4]
-  adimensional_data = transformer.transform(dimensional_point)
+  adimensional_data = transformer.transform(dimensional_data)
 #+end_src
 
 #+begin_src python
   dimensional_data = [[1, 2, 3, 4],
                       [5, 6, 7, 8],
                       [9, 10, 11, 12]]
-  adimensional_data = transfromer.axis_transform(dimensional_data)
-    #+end_src
+  adimensional_data = transformer.axis_transform(dimensional_data)
+#+end_src
+
 
 * Caution
 There is no guarantee that the program will produce the same adimensional groups every time it runs.
